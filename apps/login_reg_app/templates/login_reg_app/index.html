@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login or Register</title>
+	<style type="text/css">
+		.error{
+			color:red;
+		}
+	</style>
+</head>
+<body>
+<h2>Register a new user</h2>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+	
+<form action="/users" method="POST">
+	{% csrf_token %}
+	<p>Name: <input type="text" name="name"></p>
+	<p>Email: <input type="text" name="email"></p>
+	<p>Password: <input type="password" name="password"></p>
+	<p>Password Confirmation: <input type="password" name="password_conf"></p>
+	<input type="submit" name="">
+</form>
+
+<h2>Login an existing user</h2>
+<form action='/login' method="POST">
+	{% csrf_token %}
+	<p>Email: <input type="text" name="email"></p>
+	<p>Password: <input type="password" name="password"></p>
+	<input type="submit" name="">
+</form>
+</body>
+</html>
